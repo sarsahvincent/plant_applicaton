@@ -11,21 +11,17 @@ import {
   REGISTER,
 } from "redux-persist";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-
 import { createStore } from "redux";
-import counterSlice from "./slice/product/productSlice";
+import globalSlice from "./global/globalSlice";
+import product_data_slice from "../../screens/products/data/product_data_slice";
 
 const reducers = combineReducers({
-  user: counterSlice,
+  global: globalSlice,
+  product: product_data_slice,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
-
 const persistConfig = {
-  key: "root",
+  key: "plant_app_root",
   storage: AsyncStorage,
 };
 
@@ -44,8 +40,17 @@ export const baseStore = configureStore({
       (),
 });
 
-/* export type RootState = ReturnType<typeof baseStore.getState>;
-export type AppDispatch = typeof baseStore.dispatch; */
+export const rootStore = configureStore({
+  reducer: {
+    global: globalSlice,
+    product: product_data_slice,
+  },
+});
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
 
 setupListeners(baseStore.dispatch);
 

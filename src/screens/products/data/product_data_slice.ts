@@ -1,7 +1,7 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialAuthState: any = {
+const initialProductState: any = {
   accessToken: null,
   user: {
     contactName: null,
@@ -14,11 +14,11 @@ const initialAuthState: any = {
   },
 };
 
-const authSlice = createSlice({
-  name: "user",
-  initialState: initialAuthState,
+const productSlice = createSlice({
+  name: "product",
+  initialState: initialProductState,
   reducers: {
-    setUserCredentials: (state, action: PayloadAction<any>) => {
+    getAllProduct: (state, action: PayloadAction<any>) => {
       const accessToken = action.payload.accessToken;
       state.accessToken = accessToken;
       state.user = action.payload.user;
@@ -26,6 +26,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setUserCredentials } = authSlice.actions;
+export const { getAllProduct } = productSlice.actions;
 
-export default authSlice.reducer;
+export default productSlice.reducer;
