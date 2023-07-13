@@ -1,12 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import { API_TOKEN } from "@env";
+import { rocketIcon, customTextButton } from "./src/components/shared/Icons";
 
 export default function App() {
-  console.log(API_TOKEN);
   return (
     <View style={styles.container}>
-      <Text>hello</Text>
+      {rocketIcon}
+      {customTextButton}
       <StatusBar style="auto" />
     </View>
   );
